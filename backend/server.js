@@ -11,13 +11,23 @@ const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const path = require('path');
 
+const allowedOrigins = [
+  'http://localhost:5173', 
+  'http://localhost:3000',
+  'http://localhost:5174',
+  process.env.FRONTEND_URL // Add your production frontend URL in .env
+];
+
+// CORS middleware
 app.use(cors({
-  origin: [
-    'http://localhost:5173', 
-    'http://localhost:3000',
-    'http://localhost:5174',
-    'https://sports-q58g-pmkjhsoe3-judes-projects-1048faf2.vercel.app'
-  ],
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true); // Allow non-browser requests (Postman, curl)
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: [

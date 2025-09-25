@@ -15,7 +15,8 @@ app.use(cors({
   origin: [
     'http://localhost:5173', 
     'http://localhost:3000',
-    'http://localhost:5174'
+    'http://localhost:5174',
+    'https://sports-q58g-pmkjhsoe3-judes-projects-1048faf2.vercel.app'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],

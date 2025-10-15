@@ -15,7 +15,7 @@ const allowedOrigins = [
   'http://localhost:5173', 
   'http://localhost:3000',
   'http://localhost:5174',
-  process.env.FRONTEND_URL // Add your production frontend URL in .env
+  process.env.FRONTEND_URL || 'https://sports-q58g-oalfiv6pk-judes-projects-1048faf2.vercel.app'// Add your production frontend URL in .env
 ];
 
 // CORS middleware
